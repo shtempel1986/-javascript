@@ -1,0 +1,17 @@
+{
+  "name": "entertraining-tasks",
+  "version": "1.0.0",
+  "description": "\"задачи по программированию на javascript\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ледовских Павел",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-env": "^1.2.2",
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2"
+  }
+}
