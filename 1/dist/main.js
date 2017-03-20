@@ -11,7 +11,7 @@ $(document).ready(function () {
     $input.on('keyup', function () {
         console.log('changed', $input.val());
 
-        if ($input.val() == 'blur') {
+        if ($input.val() == 'blur' || $input.val() == 'Blur' || $input.val() == 'BLUR') {
             $input.trigger('blur');
             console.log('triggered');
         }
