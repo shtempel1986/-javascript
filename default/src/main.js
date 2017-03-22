@@ -2,10 +2,9 @@
  * Created by Павел on 19.03.2017.
  */
 $(document).ready(function () {
-    let dayForOnce = '22',
-        monthForOnce = ['02', '12'],
-        dayForTwiceNoLeap = ['02', '12', '20', '21', '22', '23', '24', '25', '26', '27', '28'],
-        dayForTwice = ['02', '12', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29'],
+    let dayForOnce    = '22',
+        monthForOnce  = ['02', '12'],
+        dayForTwice   = ['02', '12', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29'],
         monthForTwice = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
         $windowHeight = $(window).height(),
         count = 0,
@@ -17,7 +16,8 @@ $(document).ready(function () {
         return this.css({
             border: 'solid red 3px',
             display: 'inline-block',
-            width: 300
+            width: 320,
+            margin: 0
         }).text(count + '.) ' + date).appendTo('div');
     };
 
@@ -49,26 +49,31 @@ $(document).ready(function () {
         if (countOfTwo == 1) {
             for (let month of monthForOnce) {
                 date = month + '.' + dayForOnce + '.' + yearString;
-                $('<p>').addDate(date + ' (One "2" in year)  ');
+                $('<p>').addDate(date + ' (One "2" in year)');
             }
-        }else if (countOfTwo == 2) {
+        } else if (countOfTwo == 2 || countOfTwo == 3) {
             for (let month of monthForTwice) {
-                if (year % 4 == 0) {
-                    for (let day of dayForTwice) {
-                        date = month + '.' + day + '.' + yearString;
-                        dateArray = date.split('');
-                        countOfTwo = 0;
-                        for (let l of dateArray) {
-                            if (l == '2') {
-                                countOfTwo++;
-                            }
+                for (let day of dayForTwice) {
+                    date = month + '.' + day + '.' + yearString;
+                    dateArray = date.split('');
+                    countOfTwo = 0;
+                    for (let l of dateArray) {
+                        if (l == '2') {
+                            countOfTwo++;
                         }
-                        if (countOfTwo >= 4) {
-                            $('<p>').addDate(date + ' (Two "2" in year)  ');
+                    }
+                    if (countOfTwo >= 4) {
+                        if(year % 4 > 0 && date.indexOf('02.29.') == -1) {
+                            $('<p>').addDate(date + ' (Two or Three "2" in year)');
+                        }else {
+                            $('<p>').addDate(date + ' (Two or Three "2" in year)');
                         }
                     }
                 }
             }
+        }
+        if(year == 2222){
+            
         }
     }
 });

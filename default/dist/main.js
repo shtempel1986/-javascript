@@ -19,7 +19,8 @@ $(document).ready(function () {
         return this.css({
             border: 'solid red 3px',
             display: 'inline-block',
-            width: 300
+            width: 320,
+            margin: 0
         }).text(count + '.) ' + date).appendTo('div');
     };
 
@@ -80,7 +81,7 @@ $(document).ready(function () {
                     var month = _step2.value;
 
                     date = month + '.' + dayForOnce + '.' + yearString;
-                    $('<p>').addDate(date + ' (One "2" in year)  ');
+                    $('<p>').addDate(date + ' (One "2" in year)');
                 }
             } catch (err) {
                 _didIteratorError2 = true;
@@ -96,7 +97,7 @@ $(document).ready(function () {
                     }
                 }
             }
-        } else if (countOfTwo == 2) {
+        } else if (countOfTwo == 2 || countOfTwo == 3) {
             var _iteratorNormalCompletion3 = true;
             var _didIteratorError3 = false;
             var _iteratorError3 = undefined;
@@ -104,62 +105,63 @@ $(document).ready(function () {
             try {
                 for (var _iterator3 = monthForTwice[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
                     var _month = _step3.value;
+                    var _iteratorNormalCompletion4 = true;
+                    var _didIteratorError4 = false;
+                    var _iteratorError4 = undefined;
 
-                    if (year % 4 == 0) {
-                        var _iteratorNormalCompletion4 = true;
-                        var _didIteratorError4 = false;
-                        var _iteratorError4 = undefined;
+                    try {
+                        for (var _iterator4 = dayForTwice[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                            var day = _step4.value;
 
-                        try {
-                            for (var _iterator4 = dayForTwice[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                                var day = _step4.value;
+                            date = _month + '.' + day + '.' + yearString;
+                            dateArray = date.split('');
+                            countOfTwo = 0;
+                            var _iteratorNormalCompletion5 = true;
+                            var _didIteratorError5 = false;
+                            var _iteratorError5 = undefined;
 
-                                date = _month + '.' + day + '.' + yearString;
-                                dateArray = date.split('');
-                                countOfTwo = 0;
-                                var _iteratorNormalCompletion5 = true;
-                                var _didIteratorError5 = false;
-                                var _iteratorError5 = undefined;
+                            try {
+                                for (var _iterator5 = dateArray[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                                    var _l = _step5.value;
 
-                                try {
-                                    for (var _iterator5 = dateArray[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                                        var _l = _step5.value;
-
-                                        if (_l == '2') {
-                                            countOfTwo++;
-                                        }
-                                    }
-                                } catch (err) {
-                                    _didIteratorError5 = true;
-                                    _iteratorError5 = err;
-                                } finally {
-                                    try {
-                                        if (!_iteratorNormalCompletion5 && _iterator5.return) {
-                                            _iterator5.return();
-                                        }
-                                    } finally {
-                                        if (_didIteratorError5) {
-                                            throw _iteratorError5;
-                                        }
+                                    if (_l == '2') {
+                                        countOfTwo++;
                                     }
                                 }
-
-                                if (countOfTwo >= 4) {
-                                    $('<p>').addDate(date + ' (Two "2" in year)  ');
+                            } catch (err) {
+                                _didIteratorError5 = true;
+                                _iteratorError5 = err;
+                            } finally {
+                                try {
+                                    if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                                        _iterator5.return();
+                                    }
+                                } finally {
+                                    if (_didIteratorError5) {
+                                        throw _iteratorError5;
+                                    }
                                 }
                             }
-                        } catch (err) {
-                            _didIteratorError4 = true;
-                            _iteratorError4 = err;
+
+                            if (countOfTwo >= 4) {
+                                if (year % 4 > 0 && date.indexOf('02.29.') == -1) {
+                                    $('<p>').addDate(date + ' (Two or Three "2" in year)');
+                                } else {
+                                    $('<p>').addDate(date + ' (Two or Three "2" in year)');
+                                }
+                            }
+                        }
+                    } catch (err) {
+                        _didIteratorError4 = true;
+                        _iteratorError4 = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                                _iterator4.return();
+                            }
                         } finally {
-                            try {
-                                if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                                    _iterator4.return();
-                                }
-                            } finally {
-                                if (_didIteratorError4) {
-                                    throw _iteratorError4;
-                                }
+                            if (_didIteratorError4) {
+                                throw _iteratorError4;
                             }
                         }
                     }
@@ -179,5 +181,6 @@ $(document).ready(function () {
                 }
             }
         }
+        if (year == 2222) {}
     }
 });
