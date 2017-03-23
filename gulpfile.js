@@ -11,7 +11,16 @@ gulp.task("babel", function () {
         .pipe(gulp.dest("default/dist"));
 });
 
-gulp.task('watch',['babel'], function () {
+gulp.task("browser-sync", function () {
+    browserSync({
+        server:{
+            baseDir: "default"
+        },
+        notify: false
+    })
+});
+
+gulp.task('watch',['babel', "browser-sync"], function () {
     return gulp.watch('default/src/main.js', ['babel', browserSync.reload])
 });
 
