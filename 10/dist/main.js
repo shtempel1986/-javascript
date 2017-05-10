@@ -20,4 +20,3 @@ $(document).ready(function () {
     });
     console.log(new Date() - start);
 });
-console.log(window, Iterator);
